@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Test01</title>
+        <script type="text/javascript" src="../assets/js/vue.js"></script>
+    </head>
+    <body>
+        <h1>Test02</h1>
+        <div id="test_app">
+            <div v-if="isLogin">你好</div>
+            <div v-else>请登录</div>
+        </div>
+
+        <script type="text/javascript">
+            var test_app=new Vue
+            ({
+                el:'#test_app',
+                data:
+                {
+                    isLogin:false,
+                }
+            })
+
+        </script>
+    </body>
+</html>

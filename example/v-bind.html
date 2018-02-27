@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>V-bind</title>
+        <script type="text/javascript" src="../assets/js/vue.js"></script>
+    </head>
+    <body>
+        <style>
+            .classA
+            {
+                color: red;
+            }
+            .classB
+            {
+                font-size: 20px;
+            }
+            .classC
+            {
+                font-size: 30px;
+            }
+        </style>
+        <h1>V-bind</h1>
+        <div id="test_app">
+            <a :href="imgLink"><img v-bind:src="imgSrc" alt="" width="500"></a>
+            <hr>
+            <br>
+
+            <div :class="classA">1.绑定class</div>
+            <div :class="{classA:isOk}">2.判断class是否生效</div>
+            <div :class="[classA,classB]">3.绑定class的数组</div>
+            <div :class="isOk?classB:classC">4.绑定class的三元运算符</div>
+            <div :style="font">5.绑定class的具体style</div>
+            <div :style="styleObject">5_2.绑定class的具体style</div>
+
+            <input type="checkbox" name="" id="" value="flase" v-model="isOk">
+
+        </div>
+
+        <script type="text/javascript">
+            var test_app=new Vue
+            ({
+                el:'#test_app',
+                data:
+                {
+                    message:"尚德机构",
+                    imgSrc:"http://image.gamersky.com/gameshd/2018/20180227_CN_391_6.jpg",
+                    imgLink:"http://www.baidu.com",
+                    classA:"classA",
+                    classB:"classB",
+                    classC:"classC",
+                    isOk:true,
+                    font:"font-size:30px",
+                    color:"color:pink",
+                    styleObject:
+                    {
+                        fontSize:"30px",
+                        color:"pink"
+
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

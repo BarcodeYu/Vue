@@ -8,22 +8,66 @@
     <body>
         <h1>vue.directive 自定义指令</h1>
         <div id="test_app">
-            {{num}}
+            <div v-chen="color">{{num}}</div> 
             <p><button @click="add">添加</button></p>
             <p><button @click="sub">减小</button></p>
+            <p><button onclick="unbind()">取消绑定</button></p>
         </div>
 
         <script type="text/javascript">
+            // 取消绑定jq代码
+            function unbind()
+            {
+                test_app.$destroy();
+            };
+
+
+            // Vue.directive("chen",function(el,binding)
+            // {
+            //     console.log(el);
+            //     console.log(binding);//解析binding
+            //     el.style="color:"+binding.value;
+            // });
+
+            Vue.directive("chen",{ 
+                //五种生命周期
+
+                bind:function(el,binding)
+                {
+                    console.log('1-bind');
+                    el.style="color:"+binding.value;
+                },
+                inserted:function()
+                {
+                    console.log('2-inserted');                    
+                },
+                update:function()
+                {
+                    console.log('3-update');                    
+                },
+                componentUpdated:function()
+                {
+                    console.log('4-componentUpdated');                    
+                },
+                unbind:function()
+                {
+                    console.log('5-unbind');                                        
+                }
+
+            });
+
             var test_app=new Vue
             ({
                 el:'#test_app',
                 data:
                 {
-                    num:10
+                    num:10,
+                    color:"red",
                 },
                 methods:
                 {
                     add:function()
+
                     {
                         this.num++;
                     },
@@ -32,7 +76,7 @@
                         this.num--;
                     },
                 }
-            })
+            });
         </script>
     </body>
 </html>

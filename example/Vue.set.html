@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Vue.set全局操作</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+
+<!-- 
+    1.外部构造器
+    2.Vue.set的用法
+    利用数组下标
+    3.三种外部构造器方法
+    Vue.set
+    app.xxx
+    直接引用outData.xxx
+ -->
+
+
+<body>
+    <h1>Vue.set全局操作</h1>
+    <div id="test_app">
+        {{count}}
+        <ul>
+            <li v-for="item in arr">{{item}}</li>
+        </ul>
+    </div>
+    <!-- 方法一 放在div之外的方法-->
+    <button onclick="add()">Add+</button>
+
+    <script type="text/javascript">
+
+    function add() {
+        // Vue.set(outData,'count',2);
+        // test_app.count++;//方法二
+        // outData.count++;//方法三（原生）
+
+        Vue.set(test_app.arr,1,'ddd');//改变数组值，js很难实现，js的漏洞，Vue.set实现的很好
+    }
+
+
+    //外部引用
+        var outData={
+            // 普通用法
+            // goods:'car',
+            count:1,
+
+
+            // 数组用法（常用）
+            arr:['aaaa','bbbb','cccc'],
+        }
+
+        var test_app = new Vue
+            ({
+                el: '#test_app',
+                data:outData,//外部引用数据
+            })
+    </script>
+</body>
+
+</html>

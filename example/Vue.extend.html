@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Vue.extend</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>Vue.extend拓展实例构造器</h1>
+    <hr>
+    <author>Barcode</author>
+
+    <!-- 方法二 -->
+    <!-- <div id="author">Barcode</div> -->
+
+    <script type="text/javascript">
+        var authorExtend = Vue.extend({
+            template:"<p><a :href='authorUrl'>{{authorName}}</a></p>",
+            data:function()
+            {
+                return{  //这个大括号不能回车
+                    authorName:'Barcode',
+                    authorUrl:"http://www.baidu.com",
+                }
+            }
+
+        });
+
+        new authorExtend().$mount('author'); //定义标签author
+        // 第二种方法id绑定
+        // new authorExtend().$mount('#author'); //定义标签author
+        // 
+    </script>
+</body>
+
+</html>

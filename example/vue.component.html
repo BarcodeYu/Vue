@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>component组件</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>component组件</h1>
+
+    <hr>
+    <h2>定义全局组件barcode</h2>
+
+    <div id="test_app">
+        <barcode></barcode>
+        <coder></coder><!--局部组件无效 -->
+    </div>
+
+    <hr>
+    <h2>局部的定义方法</h2>
+    <div id="test_app2">
+        <coder></coder>
+    </div>
+
+    <script type="text/javascript">
+        Vue.component("barcode"/*标签名字*/,{
+            // 对象
+            template:`<div style="color:pink">全局组件barcode例子</div>`,
+        });
+        var test_app = new Vue
+            ({
+                el: '#test_app',
+            });
+            
+            //局部定义
+        var test_app2 = new Vue
+                ({
+                    el: '#test_app2',
+                    components:{
+                        "coder":{
+                            template: `<div style="color:red">局部组件coder例子</div>`,
+                        }
+                    },//定义多个组件
+                });
+    </script>
+</body>
+
+<!-- 
+    组件和指令的区别
+    指令：定义的是标签指令，比如<div v-barocode="color">
+    组件：直接自定义标签名字，这是html无法实现的<barcode></barcode>  常用组件
+ -->
+
+</html>

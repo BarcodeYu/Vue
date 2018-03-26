@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Template 制作模版</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+
+    <!-- 方法一 -->
+    
+    <h1>Template 制作模版</h1>
+    <hr>
+
+    <h2>方法一</h2>
+    <!-- 适合小组件 -->
+    <div id="test_app">
+        {{message}}
+    </div>
+
+    <script type="text/javascript">
+        var test_app = new Vue
+            ({
+                el: '#test_app',
+                data:
+                    {
+                        message: "尚德机构"
+                    },
+                template:
+                `
+                    <h2 style="color:red;">选项摸板</h2>
+                `
+            });
+    </script>
+    <hr>
+    <h2>方法二</h2>
+    <!-- 挂载多的 -->
+    <div id="test_app2">
+        <template id="Tem01">
+            <h2 style="color:blue;">标签摸板</h2>
+        </template>
+    </div>
+
+        <script type="text/javascript">
+            var test_app2 = new Vue
+                ({
+                    el: '#test_app2',
+                    data:
+                        {
+                            message: "尚德机构"
+                        },
+                    template:"#Tem01"
+                });
+        </script>
+
+
+    <hr>
+    <h2>方法三</h2>
+    <!-- 可以使用外部引用 
+        可以使用例如
+        <script type="x-template" id="Tem02" src="xxx"> 
+    -->
+    <div id="test_app3">
+        <script type="x-template" id="Tem02">
+            <h2 style="color:pink;">script标签摸板</h2>        
+        </script>
+    </div>
+
+    <script type="text/javascript">
+        var test_app3 = new Vue
+            ({
+                el: '#test_app3',
+                data:
+                    {
+                        message: "尚德机构"
+                    },
+                template: "#Tem02"
+            });
+    </script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Component 父子组件关系</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>Component 父子组件关系</h1>
+    <hr>
+    <h2>父子组件关系</h2>
+    <div id="test_app2">
+        <coder></coder>
+    </div>
+
+    <script type="text/javascript">
+
+        //局部定义
+
+                
+        var coder2components = {//儿子
+            template: `<div style="color:red;">子组件定义</div>`,
+        };
+
+        var coder1components = {//父
+            template:
+                `
+                <div>
+                    <!--需要标签包含，不然会报错-->
+                    <div style="color:pink;">父组件外部定义</div>
+                    <city></city>
+                </div>
+            `,
+            components: {
+                "city": coder2components,
+            },
+        };
+        
+        var test_app2 = new Vue  //父
+            ({
+                el: '#test_app2',
+                components: {
+                    "coder": coder1components,
+                },
+            });
+
+    </script>
+</body>
+
+<!-- 
+    组件和指令的区别
+    指令：定义的是标签指令，比如<div v-barocode="color">
+    组件：直接自定义标签名字，这是html无法实现的<barcode></barcode>  常用组件
+ -->
+
+</html>

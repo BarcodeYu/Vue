@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Component 组件props 属性设置</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>Component 组件props 属性设置</h1>
+    <hr>
+    <h2>局部的定义方法</h2>
+    <div id="test_app2">
+        <coder here="方法一：China" from-here="方法二：小驼峰的书写形式代替‘-’" :bindhere="message"></coder>
+    </div>
+
+    <script type="text/javascript">
+
+        //局部定义
+        var test_app2 = new Vue
+            ({
+                el: '#test_app2',
+                components: {
+                    "coder": {
+                        template: `<div style="color:red">局部组件coder例子 coder from {{here}} ,{{fromHere}},{{bindhere}}</div>`,
+                        props:["here","fromHere","bindhere"],
+                    }
+                },//定义多个组件
+                data:{
+                    message:"方法三：根据绑定message和here合用的方法,数据传输在message",
+                }
+            });
+    </script>
+</body>
+
+<!-- 
+    组件和指令的区别
+    指令：定义的是标签指令，比如<div v-barocode="color">
+    组件：直接自定义标签名字，这是html无法实现的<barcode></barcode>  常用组件
+ -->
+
+</html>

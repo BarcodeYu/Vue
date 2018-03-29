@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>vue选项指令 computed Option</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 金钱的转换 -->
+    <h1>vue选项指令 computed Option</h1>
+    <div id="test_app">
+        <!-- 实例一 -->
+        当前金额为{{newprice}}
+        <!-- 实例二 -->
+        新闻列表实例
+        <br>
+        <ul>
+            <li v-for="item in newsList">{{item.title}}&nbsp;&nbsp;&nbsp;&nbsp;{{item.date}}</li>
+        </ul>
+    </div>
+
+    <script type="text/javascript">
+
+        var newsList = [
+                { title: '香港或就“装甲车被扣”事件追责 起诉涉事运输公司', date: '2017/3/10' },
+                { title: '日本第二大准航母服役 外媒：针对中国潜艇', date: '2017/3/12' },
+                { title: '中国北方将有明显雨雪降温天气 南方阴雨持续', date: '2017/3/13' },
+                { title: '起底“最短命副市长”：不到40天落马，全家被查', date: '2017/3/23' },
+            ];
+
+        var test_app = new Vue
+            ({
+                el: '#test_app',
+                data:
+                    {
+                        price:'100',
+                        newsList: newsList,
+                    },
+                computed:{//直接转换，常用！
+                    newprice:function()
+                    {
+                        return this.price='￥'+ this.price + '元';
+                    },
+                    newInturn:function()
+
+                    {
+                        return this.newsList.reverse();
+                    },
+                }
+            });
+        
+    </script>
+</body>
+
+</html>

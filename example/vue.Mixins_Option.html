@@ -20,21 +20,70 @@
     <h1>mixins的调用顺序</h1>
     <div id="test_app2">
         <p>{{num2}}</p>
-        
+        <button @click="numAdd2">增加</button>
     </div>
 
+    <hr>
+    <h1>全局API混入方式</h1>
+
+    <div id="test_app3">
+        <p>{{num3}}</p>
+        <button @click="numAdd3">增加</button>
+    </div>
+
+
     <script type="text/javascript">
+        //mixins的调用顺序
+
         var addLog={
                 updated: function () {
                     console.log("数据变化为："+this.num);
                 }
         }
+
+        
+        var addLog2 = {
+            updated: function () {
+                console.log("数据变化为：" + this.num2);
+            }
+        }
+
+// //全局混入
+//         Vue.mixins ({
+//             undated:function()
+//             {
+//                 console.log("我是全局混入");
+//             }
+//         });
+
+        var test_app3 = new Vue({
+            el: "#test_app3",
+            data: {
+                num3: 0,
+            },
+            methods: {
+                numAdd3: function () {
+                    this.num3++;
+                }
+            },
+        });
+
+
         var test_app2=new Vue({
             el:"#test_app2",
             data:{
                 num2:0,
-
-            }
+            },
+            methods:{
+                numAdd2:function()
+                {
+                    this.num2++;
+                }
+            },
+            updated:function(){
+                console.log("构造器里的updated方法。")
+            },
+            mixins:[addLog2],
         });
         var test_app = new Vue
             ({
@@ -42,7 +91,6 @@
                 data:
                     {
                         num:0,
-
                     },
                 methods:{
                     numAdd:function(){

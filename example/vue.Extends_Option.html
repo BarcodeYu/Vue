@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Extends Option 扩展选项</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>Extends Option 扩展选项</h1>
+    <div id="test_app">
+        {{message}}
+        <button @click="add">add</button>
+    </div>
+
+    <script type="text/javascript">
+        var bbb={
+            created:function(){
+                console.log("我是被扩展出来的");
+            },
+            methods:{
+                add:function(){
+                    console.log("我是被扩展出来的方法！")
+                }
+            },
+        }
+
+        var test_app = new Vue
+            ({
+                el: '#test_app',
+                data:
+                    {
+                        message: "尚德机构"
+                    },
+                methods:{
+                    add:function(){
+                        console.log("我是原生方法");
+                    }
+                },
+                extends:bbb,
+            })
+    </script>
+</body>
+
+</html>

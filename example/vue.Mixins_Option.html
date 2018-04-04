@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Mixins 混入选项操作</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>Mixins 混入选项操作</h1>
+    <br>
+    <p> Mixins一般有两种用途： <br>1、在你已经写好了构造器后，需要增加方法或者临时的活动时使用的方法，这时用混入会减少源代码的污染。 <br>2、很多地方都会用到的公用方法，用混入的方法可以减少代码量，实现代码重用。</p>
+    <div id="test_app">
+        <p> 数字：{{num}}</p>
+        <button @click="numAdd">增加</button>
+    </div>
+
+    <hr>
+    <h1>mixins的调用顺序</h1>
+    <div id="test_app2">
+        <p>{{num2}}</p>
+        
+    </div>
+
+    <script type="text/javascript">
+        var addLog={
+                updated: function () {
+                    console.log("数据变化为："+this.num);
+                }
+        }
+        var test_app2=new Vue({
+            el:"#test_app2",
+            data:{
+                num2:0,
+
+            }
+        });
+        var test_app = new Vue
+            ({
+                el: '#test_app',
+                data:
+                    {
+                        num:0,
+
+                    },
+                methods:{
+                    numAdd:function(){
+                        this.num++;
+                    },
+                },
+                //mixins代码
+                //Mixins的基本用法
+                //额外临时加入时，用于显示日志
+                mixins: [addLog],//混入
+            })
+    </script>
+</body>
+
+</html>

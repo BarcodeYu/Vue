@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Watch 选项 监控数据</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>Watch 选项 监控数据</h1>
+    <div id="test_app">
+
+        <p>方法一构造器内部</p>
+        <p>今天的温度是{{Temperature}}℃</p>
+        <p>今天穿衣建议是:{{this.suggestion}}</p>
+        <p>
+            <button @click="temAdd">添加温度</button>
+            <button @click="temSub">减小温度</button>
+        </p>
+    </div>
+<hr>
+
+    <div id="test_appt">
+        <p>方法二:构造器外部</p>
+        <p>今天的温度是{{Temperaturet}}℃</p>
+        <p>今天穿衣建议是:{{this.suggestiont}}</p>
+        <p>
+            <button @click="temAdd2">添加温度</button>
+            <button @click="temSub2">减小温度</button>
+        </p>
+    </div>
+
+    <script type="text/javascript">
+        var suggestion=["T恤短袖","夹克长裙","羽绒服"];
+        var suggestiont=["T恤短袖","夹克长裙","羽绒服"];
+        // 方法二：构造器外部，降低程序的耦合度，使程序变的灵活
+
+        //app.$watch('',function (params){})
+
+
+
+
+        var test_appt=new Vue({
+            el:"#test_appt",
+            data:
+            {
+                Temperaturet: 14,
+                suggestiont: "夹克长裙",
+            },
+            methods: {
+                temAdd2: function () {
+                    this.Temperaturet += 5
+                },
+                temSub2: function () {
+                    this.Temperaturet -= 5
+                },
+            }
+        });
+
+
+
+
+        var test_app = new Vue
+            ({
+                el: '#test_app',
+                data:
+                    {
+                        Temperature:14,
+                        suggestion:"夹克长裙",
+                    },
+                methods:{
+                    temAdd:function () {
+                        this.Temperature+=5
+                    },
+                    temSub:function () {
+                        this.Temperature-=5                        
+                    },
+                },
+                // 方法一：构造器内部
+                watch: {
+                    Temperature:function(newVal,oldVal){
+                        if(newVal>=26)
+                        {
+                            this.suggestion= suggestion[0];
+                        }   
+                        else if(newVal<26&&oldVal>0)
+                        {
+                            this.suggestion= suggestion[1];
+                        }
+                        else{
+                            this.suggestion = suggestion[2];                            
+                        }
+                    }
+                },
+            });
+
+
+            test_appt.$watch("Temperaturet", function (newVal, oldVal) {
+                    if (newVal >= 26) {
+                        this.suggestiont = suggestiont[0];
+                    }
+                    else if (newVal < 26 && oldVal > 0) {
+                        this.suggestiont = suggestiont[1];
+                    }
+                    else {
+                        this.suggestiont = suggestiont[2];
+                    }
+                });
+    </script>
+</body>
+
+</html>
+

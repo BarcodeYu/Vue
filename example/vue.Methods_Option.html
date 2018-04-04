@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>vue选项指令 Methods Option 方法选项</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>vue选项指令 Methods Option 方法选项</h1>
+    <div id="test_app">
+        <h2>常用</h2>
+        <!-- 点击按钮传值+1事件 -->
+        <div>{{sum}}</div>
+        <button @click="add(2)">+</button>
+<hr>
+        <h2>event参数在里面，可看到详细事件</h2>
+        <div>{{sum2}}</div>
+        <button @click="add2(2,$event)">+</button>
+
+        <hr>
+        <h2>调用自己写的组件</h2>
+        <div>{{sum}}</div>
+        <btn @click.native="add(2)"></btn>
+    </div>
+
+    <script type="text/javascript">
+        var btn={
+            template:`<button>自定组件+</button>`,
+        };
+
+        var test_app = new Vue
+            ({
+                el: '#test_app',
+                data:{
+                        sum: 0,
+                        sum2:0,
+                    },
+                components: {//挂载自定义组件
+                        "btn": btn,
+                    },
+                methods:{
+                    add:function(num){
+                        // 传值方法 
+                        if (num!='') {
+                            this.sum+=num;
+                        }
+                        else{
+                            this.sum++;
+                        }
+                    },
+                    add2: function (num2,event) {
+                        // 传值方法 
+                        if (num2 != '') {
+                            this.sum2 += num2;
+                        }
+                        else {
+                            this.sum2++;
+                        }
+                        console.log(event);
+                    },
+                },
+            });
+    </script>
+</body>
+
+</html>
